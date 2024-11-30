@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Your Log File</title>
+    <style>
+        /* General reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+        }
+
+        .upload-container {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 30px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .upload-container h1 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .upload-container p {
+            font-size: 1rem;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .upload-container input[type="file"] {
+            display: none;
+        }
+
+        .upload-container label {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: #007bff;
+            background: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .upload-container label:hover {
+            background: #007bff;
+            color: #fff;
+        }
+
+        .upload-container button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .upload-container button:hover {
+            background: #218838;
+        }
+
+        .upload-container .error {
+            color: #721c24;
+            background: #f8d7da;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }
+
+        .upload-container .success {
+            color: #155724;
+            background: #d4edda;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="upload-container">
+        <h1>Upload Your Log File</h1>
+        <p>Only files with a <strong>.log</strong> extension are allowed.</p>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Render the form and file input -->
+            {{ form.as_p }} 
+            {% comment %} <input type="file" id="fileInput" name="logFile" required>
+            <label for="fileInput">Choose File</label> {% endcomment %}
+            <button type="submit" id="submitButton">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
